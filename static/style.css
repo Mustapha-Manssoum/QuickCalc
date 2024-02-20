@@ -1,0 +1,36 @@
+form {
+    background-color: beige;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    width: auto;
+    text-align: center;
+}
+
+input, select, button {
+    margin: 10px 5px;
+    padding: 7px;
+    box-sizing: content-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+div {
+    text-align: center;
+    box-sizing: content-box;
+    /* background-color: greenyellow; */
+    color: #45a049;
+    padding: 20px; /* Add 20 pixels of padding on all sides */
+    margin: 20px auto; /* Center the div horizontally */
+    max-width: 400px; /* Optional: Set a maximum width for the centered content */
+    font-size: 100px;
+}
