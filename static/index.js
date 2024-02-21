@@ -1,4 +1,4 @@
-document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+document.getElementById('calculatorForm').addEventListener('submit', async (event) => {
     event.preventDefault();  // prevent the default form submission
 
     // get values from the form
@@ -13,27 +13,28 @@ document.getElementById('calculatorForm').addEventListener('submit', function(ev
     }
 
     // send data to the backend for processing
-    fetch(`/calcul?operand1=${operand1}&operation=${operation}&operand2=${operand2}`, {
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-        },
-    })
-    .then(response => {
-        // check if the response is a valid JSON
+    try {
+        const response = await fetch(`/calcul?operand1=${operand1}&operation=${operation}&operand2=${operand2}`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
+    
+        // check if the response is a valid json
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
-    })
-    .then(data => {
+        const data = await response.json();
+    
         // display the result to the user
         console.log(data);
         document.getElementById('result').innerText = `Result: ${data}`;
-    })
-    .catch(error => {
+    }
+    
+    catch(error) {
         console.error('Error:', error);
         alert('An error occurred. Check the console for details.');
-    });
+    }
     
 });
