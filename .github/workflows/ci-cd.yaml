@@ -7,8 +7,6 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    env:
-      LOWER_REPO: ${{ github.repository.split('/')[1] | lower }}
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -20,6 +18,10 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        # 4️⃣ Create lowercase repo name environment variable
+      - name: Set lowercase repo name
+        run: echo "LOWER_REPO=$(echo ${GITHUB_REPOSITORY#*/} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
