@@ -7,6 +7,8 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    env:
+      LOWER_REPO: ${{ github.repository.split('/')[1] | lower }}
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -24,8 +26,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]'):latest
-            ghcr.io/${{ github.repository_owner }}/$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]'):${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.LOWER_REPO }}:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.LOWER_REPO }}:${{ github.sha }}
       - name: Update Gitops repository
         shell: bash
         env:
