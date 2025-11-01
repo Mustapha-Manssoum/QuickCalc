@@ -23,7 +23,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository.toLowerCase() }}:latest,ghcr.io/${{ github.repository_owner }}/${{ github.repository.toLowerCase() }}:${{ github.sha }}
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]'):latest
+            ghcr.io/${{ github.repository_owner }}/$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]'):${{ github.sha }}
       - name: Update Gitops repository
         shell: bash
         env:
