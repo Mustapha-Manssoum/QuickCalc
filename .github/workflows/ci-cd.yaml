@@ -21,7 +21,7 @@ jobs:
         # 4️⃣ Set lowercase owner and repo name
       - name: Set lowercase owner and repo
         run: |
-          echo "LOWER_REPO=$(echo ${GITHUB_REPOSITORY#*/} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "LOWER_OWNER=$(echo $GITHUB_REPOSITORY_OWNER | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
           echo "LOWER_REPO=$(echo ${GITHUB_REPOSITORY#*/} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
