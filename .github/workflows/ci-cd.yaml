@@ -24,8 +24,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/${{ github.repository.toLowerCase }}:latest
+            ghcr.io/${{ github.repository.toLowerCase }}:${{ github.sha }}
       - name: Update Gitops repository
         shell: bash
         env:
