@@ -54,7 +54,8 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    server_address = ('localhost', 8000)
+    PORT = 8080
+    server_address = ('0.0.0.0', PORT)
     httpd = http.server.HTTPServer(server_address, MyHttpRequestHandler)
-    print('Server running on port 8000')
+    print(f'Server running on port {PORT}')
     httpd.serve_forever()
