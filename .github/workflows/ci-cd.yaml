@@ -47,5 +47,5 @@ jobs:
           git add deployment.yaml
           git commit -m "Update image to ${{ github.sha }}"
           
-          # Push
+          # Push 
           git push -f https://${GIT_TOKEN}@github.com/Mustapha-Manssoum/quickcalc-gitops.git master
