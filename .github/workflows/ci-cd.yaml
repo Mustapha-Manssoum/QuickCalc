@@ -26,7 +26,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/\${{ github.repository.toLowerCase() }}:latest
             ghcr.io/${{ github.repository_owner }}/\${{ github.repository.toLowerCase() }}:${{ github.sha }}
-
       - name: Update Gitops repository
         shell: bash
         env:
