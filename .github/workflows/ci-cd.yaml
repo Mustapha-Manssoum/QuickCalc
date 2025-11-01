@@ -46,7 +46,7 @@ jobs:
           git clone https://github.com/Mustapha-Manssoum/quickcalc-gitops.git gitops
           cd gitops
 
-          sed -i "s|image: ghcr.io/${{ github.repository }}:.*|image: ghcr.io/${{ github.repository }}:${{ github.sha }}|g" deployment.yaml
+          sed -i "s|image: ghcr.io/.*/.*|image: ghcr.io/${{ env.LOWER_OWNER }}/${{ env.LOWER_REPO }}:${{ github.sha }}|g" deployment.yaml
 
           # Commit changes
           git config --global user.name "GitHub Actions"
